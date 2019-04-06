@@ -1,21 +1,33 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { View, StatusBar } from 'react-native'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux';
+import reducer from './reducers'
+import middleware from './middleware'
+import Navigator from './components/Navigator'
+import { gray } from './util/colors'
+import { Constants } from 'expo'
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
+function FlashCardStatusBar ({backgroundColor, ...props}) {
+  return (
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default class App extends React.Component {
+
+  store = createStore(reducer, middleware)
+
+  render() {
+    return (
+      <Provider store={this.store}>
+        <View style={{flex: 1}}>
+          <FlashCardStatusBar backgroundColor={gray} barStyle="light-content" />
+          <Navigator />
+        </View>
+      </Provider>
+    )
+  }
+}
