@@ -7,9 +7,12 @@ const initialState = {
 
 export default function decks (state = initialState, action) {
     switch(action.type) {
-        case(GET_DECKS): {
+        case GET_DECKS: {
+            console.log("REDUCER")
+            console.log(action)
             return {
                 ...state,
+                data: action.decks,
                 status: 'loaded'
             }
         }
