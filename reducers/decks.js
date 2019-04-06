@@ -1,21 +1,18 @@
-import { GET_DECKS } from '../util/constants'
+import { GET_DECKS, FETCHING, FETCHED } from '../util/constants'
 
 const initialState = {
     data: {},
-    status: 'loading',
+    status: FETCHING,
 }
 
 export default function decks (state = initialState, action) {
     switch(action.type) {
-        case GET_DECKS: {
-            console.log("REDUCER")
-            console.log(action)
+        case GET_DECKS: 
             return {
                 ...state,
                 data: action.decks,
-                status: 'loaded'
+                status: FETCHED
             }
-        }
         default:
             return state
     }

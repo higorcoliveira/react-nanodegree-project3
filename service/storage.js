@@ -28,16 +28,12 @@ let initialData = {
 }
 
 export function loadInitialData() {
-    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(initialData));
+    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(initialData))
     return initialData;
 }
 
-// retorna a promise?
 export function getAllDecks() {
     return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(results => {
-        console.log("STORAGE")
-        console.log(results)
         return results === null ? loadInitialData() : JSON.parse(results)
-        // loadInitialData()
-    });
+    })
 }

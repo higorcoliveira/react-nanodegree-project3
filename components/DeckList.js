@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import { Text, StyleSheet, View, FlatList, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { handleGetDecks } from '../actions/decks'
+import DeckInfo from './DeckInfo'
 
 class DeckList extends Component {
   componentDidMount() {
@@ -10,24 +11,35 @@ class DeckList extends Component {
     dispatch(handleGetDecks())
   }
 
+  renderItem = ({item}) => (    
+    <View>
+      {/* TODO colocar navegação para a tela do deck */}
+      <TouchableOpacity>
+        <DeckInfo title={item.title} questions={item.questions} />
+      </TouchableOpacity>
+    </View>
+  )
+
   render() {
     const { decks } = this.props
-    console.log(decks)
 
     return (
-      <View>
-        <Text> {decks['React'].title} </Text>
-        {/* <Text> {decks} </Text> */}
+      <View style={styles.container}>        
+        {Object.keys(decks).length > 0 &&
+          <FlatList 
+            data={decks}
+            renderItem={this.renderItem}
+            keyExtractor={(item, index) => item.title}
+          />
+        }
       </View>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log("MAP PROPS")
-  console.log(state)
   return {
-      decks: state.decks.data,
+      decks: Object.values(state.decks.data).sort()
   }
 }
 
@@ -36,7 +48,11 @@ DeckList.propTypes = {
   dispatch: PropTypes.func.isRequired
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+  }
+})
 
 export default connect(mapStateToProps)(DeckList)
 

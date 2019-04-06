@@ -9,7 +9,6 @@ function getDecks(decks) {
 }
 
 export function handleGetDecks() {
-    console.log("ACTION")    
     return (dispatch) => {
         return getAllDecks()
             .then((decks) => dispatch(getDecks(decks)))
