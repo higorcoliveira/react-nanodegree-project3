@@ -5,6 +5,7 @@ import { createStackNavigator, createBottomTabNavigator,
 import { MaterialIcons } from '@expo/vector-icons'
 import { white, gray } from '../util/colors'
 import DeckList from './DeckList'
+import NewDeck from './NewDeck'
 
 // objeto que representa as abas
 const tabs = {
@@ -16,7 +17,14 @@ const tabs = {
                 <MaterialIcons name="library-books" size={30} color={tintColor} />,
         }
     },
-    // TODO colocar a aba de novo baralho aqui
+    NewDeck: {
+        screen: NewDeck,
+        navigationOptions: {
+            tabBarLabel: 'Adicionar Baralho',
+            tabBarIcon: ({ tintColor }) =>
+                <MaterialIcons name="library-add" size={30} color={tintColor} />,
+        }
+    }
 }
 
 const navigationOptions = {

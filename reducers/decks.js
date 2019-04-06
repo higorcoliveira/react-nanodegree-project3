@@ -1,4 +1,4 @@
-import { GET_DECKS, FETCHING, FETCHED } from '../util/constants'
+import { GET_DECKS, ADD_DECK, FETCHING, FETCHED } from '../util/constants'
 
 const initialState = {
     data: {},
@@ -13,6 +13,13 @@ export default function decks (state = initialState, action) {
                 data: action.decks,
                 status: FETCHED
             }
+        case ADD_DECK: {
+            const { decks } = action            
+            return {
+                ...state,
+                data: decks
+            }
+        }
         default:
             return state
     }

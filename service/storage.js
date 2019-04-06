@@ -37,3 +37,7 @@ export function getAllDecks() {
         return results === null ? loadInitialData() : JSON.parse(results)
     })
 }
+
+export function createDeck(deck) {
+    return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify(deck))
+}
