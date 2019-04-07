@@ -9,6 +9,7 @@ import NewDeck from './NewDeck'
 import DeckDetails from './DeckDetails'
 import NewQuestion from './NewQuestion'
 import Quiz from './Quiz'
+import { StackTransition } from './StackTransition'
 
 // objeto que representa as abas
 const tabs = {
@@ -56,6 +57,7 @@ const TabNav =
     ? createBottomTabNavigator(tabs, navigationOptions)
     : createMaterialTopTabNavigator(tabs, navigationOptions)
 
+// navegação principal 
 const App = createStackNavigator({
     Home: {
         screen: TabNav,
@@ -66,7 +68,8 @@ const App = createStackNavigator({
     DeckDetails: {
         screen: DeckDetails,
         navigationOptions: {
-            header: null
+            header: null,
+            // transitionConfig: StackTransition,
         }
     },
     NewQuestion: {
@@ -81,6 +84,9 @@ const App = createStackNavigator({
             header: null
         }
     }
+}, 
+{
+    transitionConfig: StackTransition,
 })
 
 export default createAppContainer(App)
