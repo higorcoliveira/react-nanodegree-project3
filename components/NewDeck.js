@@ -30,14 +30,11 @@ class NewDeck extends Component {
       [item.title]: {title: item.title, questions: item.questions}
     })
 
-    // TODO redirecionar para o deck criado?
     Alert.alert(
         'Sucesso', 'Baralho Adicionado!',
-        [
-            {
-                text: 'OK', onPress: () => navigation.navigate('DeckList')
-            }
-        ]
+        [{
+          text: 'OK', onPress: () => navigation.navigate('DeckDetails', { deck: item })
+        }]
     )
   }
 
