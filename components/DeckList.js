@@ -11,10 +11,11 @@ class DeckList extends Component {
     dispatch(handleGetDecks())
   }
 
-  renderItem = ({item}) => (    
-    <View>
-      {/* TODO colocar navegação para a tela do deck */}
-      <TouchableOpacity>
+  renderItem = ({item}) => (
+    <View>      
+      <TouchableOpacity onPress={() => 
+        this.props.navigation.navigate('DeckDetails', { deck: item })}
+      >
         <DeckInfo title={item.title} questions={item.questions} />
       </TouchableOpacity>
     </View>

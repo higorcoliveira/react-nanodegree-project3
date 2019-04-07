@@ -4,7 +4,7 @@ import { Text, StyleSheet, View, Button, TextInput, Alert } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import { connect } from 'react-redux';
 import { handleCreateDeck } from '../actions/decks'
-import { black, gray, white, ivory } from '../util/colors'
+import { black, gray, ivory } from '../util/colors'
 
 class NewDeck extends Component {
   // inicializando o objeto que representa o deck

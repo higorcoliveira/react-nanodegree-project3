@@ -1,4 +1,4 @@
-// DECKS
+// DECKS ACTIONS
 const GET_DECKS = 'GET_DECKS'
 const ADD_DECK = 'ADD_DECK'
 

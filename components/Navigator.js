@@ -6,6 +6,9 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { white, gray } from '../util/colors'
 import DeckList from './DeckList'
 import NewDeck from './NewDeck'
+import DeckDetails from './DeckDetails'
+import NewQuestion from './NewQuestion'
+import Quiz from './Quiz'
 
 // objeto que representa as abas
 const tabs = {
@@ -54,13 +57,30 @@ const TabNav =
     : createMaterialTopTabNavigator(tabs, navigationOptions)
 
 const App = createStackNavigator({
-    home: {
+    Home: {
         screen: TabNav,
         navigationOptions: {
             header: null
         }
     },
-    // TODO acrescentar outras telas aqui
+    DeckDetails: {
+        screen: DeckDetails,
+        navigationOptions: {
+            header: null
+        }
+    },
+    NewQuestion: {
+        screen: NewQuestion,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Quiz: {
+        screen: Quiz,
+        navigationOptions: {
+            header: null
+        }
+    }
 })
 
 export default createAppContainer(App)
