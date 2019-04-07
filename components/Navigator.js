@@ -8,7 +8,7 @@ import DeckList from './DeckList'
 import NewDeck from './NewDeck'
 import DeckDetails from './DeckDetails'
 import NewQuestion from './NewQuestion'
-import Quiz from './Quiz'
+import QuizBoard from './QuizBoard'
 import { StackTransition } from './StackTransition'
 
 // objeto que representa as abas
@@ -78,7 +78,7 @@ const App = createStackNavigator({
         }
     },
     Quiz: {
-        screen: Quiz,
+        screen: QuizBoard,
         navigationOptions: {
             header: null
         }

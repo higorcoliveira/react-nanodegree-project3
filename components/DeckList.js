@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
+import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { handleGetDecks } from '../actions/decks'
 import DeckInfo from './DeckInfo'

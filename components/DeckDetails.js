@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 import { withNavigation } from 'react-navigation'
@@ -25,7 +26,7 @@ const DeckDetails = (props) => {
             </TouchableOpacity>
             <TouchableOpacity style={styles.startQuizButton}
                 onPress={() => {
-                    navigation.navigate('Quiz')
+                    navigation.navigate('Quiz', {title: deck.title})
                 }}
             >               
               <Text style={styles.startQuizTitle}>Iniciar Quiz</Text>
@@ -83,6 +84,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
 })
+
+DeckDetails.propTypes = {
+    deck: PropTypes.instanceOf(Object).isRequired,
+}
 
 const mapStateToProps = (state, ownProps) => {
     const { navigation } = ownProps
