@@ -1,12 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import Header from './Header'
 import { white, black } from '../util/colors'
 
 const DeckDetails = (props) => {
-    const { navigation } = props
-    const deck = navigation.getParam('deck')
+    const { deck, navigation } = props
     
     return (
       <View>
@@ -18,7 +18,7 @@ const DeckDetails = (props) => {
             </View>
             <TouchableOpacity style={styles.addCardButton}
                 onPress={() => {
-                    navigation.navigate('NewQuestion')
+                    navigation.navigate('NewQuestion', {title: deck.title})
                 }}
             >
               <Text style={styles.addCardTitle}>Adicionar carta</Text>
@@ -84,4 +84,12 @@ const styles = StyleSheet.create({
     },
 })
 
-export default withNavigation(DeckDetails)
+const mapStateToProps = (state, ownProps) => {
+    const { navigation } = ownProps
+    const title = navigation.getParam('title')
+    return {
+        deck: state.decks.data[title]
+    }
+  }
+
+export default withNavigation(connect(mapStateToProps)(DeckDetails))

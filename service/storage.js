@@ -41,3 +41,22 @@ export function getAllDecks() {
 export function createDeck(deck) {
     return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify(deck))
 }
+
+export function createCardOnDeck(deck, question) {
+    return AsyncStorage.getItem(DECKS_STORAGE_KEY, (err, result) => {
+        let existingDecks = JSON.parse(result)
+        let newQuestions = JSON.parse(JSON.stringify(existingDecks[deck.title].questions))
+        newQuestions.push(question)
+
+        const deckUpdated = JSON.stringify({
+            [deck.title]: {title: deck.title, questions: newQuestions},
+        })
+
+        return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, deckUpdated);
+    })
+}
+
+// para reiniciar os dados (usada só pra desenvolvimento)
+export function clear() {
+    return AsyncStorage.clear()
+}

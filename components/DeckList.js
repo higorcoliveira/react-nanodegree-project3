@@ -11,10 +11,15 @@ class DeckList extends Component {
     dispatch(handleGetDecks())
   }
 
+  componentWillMount() {
+    const { dispatch } = this.props
+    dispatch(handleGetDecks())
+  }
+
   renderItem = ({item}) => (
     <View>      
       <TouchableOpacity onPress={() => 
-        this.props.navigation.navigate('DeckDetails', { deck: item })}
+        this.props.navigation.navigate('DeckDetails', { title: item.title })}
       >
         <DeckInfo title={item.title} questions={item.questions} />
       </TouchableOpacity>

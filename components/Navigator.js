@@ -69,7 +69,6 @@ const App = createStackNavigator({
         screen: DeckDetails,
         navigationOptions: {
             header: null,
-            // transitionConfig: StackTransition,
         }
     },
     NewQuestion: {

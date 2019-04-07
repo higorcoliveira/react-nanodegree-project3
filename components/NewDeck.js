@@ -33,7 +33,7 @@ class NewDeck extends Component {
     Alert.alert(
         'Sucesso', 'Baralho Adicionado!',
         [{
-          text: 'OK', onPress: () => navigation.navigate('DeckDetails', { deck: item })
+          text: 'OK', onPress: () => navigation.navigate('DeckDetails', { title: item.title })
         }]
     )
   }
