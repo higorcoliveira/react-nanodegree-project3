@@ -5,21 +5,22 @@ import { Text, StyleSheet, View } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import Header from './Header'
 import QuestionCard from './QuestionCard'
+import ScoreCard from './ScoreCard'
 
 class QuizBoard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      correctAnswers: 0,
+      score: 0,
       index: 0,
     }
   }
 
   isCorrect = () => {
-    const { index, correctAnswers } = this.state
+    const { index, score } = this.state
     this.setState({
       index: index + 1, 
-      correctAnswers: correctAnswers + 1, 
+      score: score + 1, 
     })
   }
 
@@ -33,8 +34,14 @@ class QuizBoard extends Component {
     return index < questions.length
   }
 
+  restartQuiz = () => {
+    this.setState({
+      index: 0, score: 0
+    })
+  }
+
   render() {
-    const { index, correctAnswers } = this.state
+    const { index, score } = this.state
     const { deck } = this.props
 
     return (
@@ -48,7 +55,10 @@ class QuizBoard extends Component {
                 isCorrect={this.isCorrect}
                 isIncorrect={this.isIncorrect}
               />)
-            : (<Text>SCORE!!!</Text>)
+            : (<ScoreCard 
+                score={score}
+                restartQuiz={this.restartQuiz}
+              />)
         }
       </View>
     )
