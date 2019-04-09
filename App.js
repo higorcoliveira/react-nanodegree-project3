@@ -7,8 +7,13 @@ import middleware from './middleware'
 import Navigator from './components/Navigator'
 import FlashCardStatusBar from './components/FlashCardStatusBar'
 import { gray } from './util/colors'
+import { setLocalNotification } from './service/notification'
 
-export default class App extends React.Component {
+class App extends React.Component {
+
+  componentDidMount() {
+    setLocalNotification()
+  }
 
   store = createStore(reducer, middleware)
 
@@ -23,3 +28,5 @@ export default class App extends React.Component {
     )
   }
 }
+
+export default App

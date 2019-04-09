@@ -18,7 +18,7 @@ class QuestionCard extends Component {
         const questionLeft = questions.length - index;
 
         const questionLink = (<View style={styles.showContainer}>
-                                <Text style={styles.showTitle}>{questions[index].answer}</Text>
+                                <Text style={styles.showAnswerTitle}>{questions[index].answer}</Text>
                                 <TouchableOpacity onPress={this.toogleShowAnswer}>
                                     <Text style={styles.showQuestion}>Mostrar pergunta</Text>
                                 </TouchableOpacity>
@@ -36,7 +36,7 @@ class QuestionCard extends Component {
             <View style={styles.progress}>
                 <Text style={styles.progressTitle}>{ questionLeft } / { questions.length }</Text>
             </View>
-            <View style={{flex: 4}}>
+            <View style={{flex: 6}}>
                 <View>
                     { showAnswer ? questionLink : answerLink }
                 </View>
@@ -73,7 +73,12 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     showTitle: {
-        fontSize: 40
+        fontSize: 35,
+        marginLeft: 15
+    },
+    showAnswerTitle : {
+        fontSize: 30,
+        marginLeft: 15
     },
     showQuestion: {
         fontSize: 25, 
@@ -88,7 +93,7 @@ const styles = StyleSheet.create({
     checkIsCorrect: {
         alignItems: 'center', 
         justifyContent: 'space-around', 
-        flex: 2
+        flex: 4
     },
     isCorrect: {
         backgroundColor: green,
@@ -96,7 +101,7 @@ const styles = StyleSheet.create({
         height: 40,
         textAlign: 'center',
         width: 250,
-        marginTop: 100,
+        marginTop: 50,
         fontSize: 20,
         borderRadius: 8,
         paddingTop: 5
