@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import { white, black } from '../util/colors'
+import { clearLocalNotification, setLocalNotification } from '../service/notification'
 
-const ScoreCard = (props) => {
-    const { navigation, score, restartQuiz } = props
+class ScoreCard extends Component {
+
+  componentDidMount() {
+    clearLocalNotification()
+      .then(setLocalNotification)
+  }
+
+  render() {
+    const { navigation, score, restartQuiz } = this.props
 
     return (
       <View style={styles.container}>
@@ -25,6 +33,7 @@ const ScoreCard = (props) => {
         </View>
       </View>
     )
+  }
 }
 
 const styles = StyleSheet.create({

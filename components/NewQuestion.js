@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Text, StyleSheet, View, TextInput, Alert, Button } from 'react-native'
+import { Text, StyleSheet, View, TextInput, Alert, Button, KeyboardAvoidingView } from 'react-native'
 import { black, gray, ivory } from '../util/colors'
 import { handleCreateCardOnDeck } from '../actions/decks'
 import Header from './Header'
@@ -38,19 +38,16 @@ class NewQuestion extends Component {
 
   submitNotAllowed = () => {
     const { question, answer } = this.state
-    return question === '' || answer === ''
+    return question.trim().length === 0 || answer.trim().length === 0
   }
 
   render() {
     const { question, answer } = this.state
-    // const { deck } = this.props
-    // console.log("DECK PARAM")
-    // console.log(deck)
 
     return (
       <View>
         <Header label={'Adicionar carta'} />
-        <View style={styles.container}>
+        <KeyboardAvoidingView behavior="padding" style={styles.container}>
               <Text style={styles.title}>Pegunta</Text>
               <TextInput
                   value={question}
@@ -70,7 +67,7 @@ class NewQuestion extends Component {
                   disabled={this.submitNotAllowed()}
                   accessibilityLabel="Digite a pergunta e a resposta..."
               />
-        </View>
+        </KeyboardAvoidingView>
       </View>
     )
   }

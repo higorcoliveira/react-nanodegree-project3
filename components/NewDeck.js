@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Text, StyleSheet, View, Button, TextInput, Alert } from 'react-native'
+import { Text, StyleSheet, View, Button, TextInput, Alert, KeyboardAvoidingView } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import { connect } from 'react-redux';
 import { handleCreateDeck } from '../actions/decks'
@@ -40,14 +40,14 @@ class NewDeck extends Component {
 
   submitNotAllowed = () => {
     const { title } = this.state
-    return title === ''
+    return title.trim().length === 0
   }
 
   render() {
     const { title } = this.state
 
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <Text style={styles.title}>Qual será o título do seu baralho?</Text>
             <TextInput
                 value={title}
@@ -61,7 +61,7 @@ class NewDeck extends Component {
                 disabled={this.submitNotAllowed()}
                 accessibilityLabel="Digite um título para o baralho..."
             />
-        </View>
+        </KeyboardAvoidingView>
     )
   }
 }

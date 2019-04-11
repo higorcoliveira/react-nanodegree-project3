@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, Platform } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import Header from './Header'
 import { white, black } from '../util/colors'
@@ -12,8 +12,8 @@ const DeckDetails = (props) => {
     return (
       <View>
         <Header label={deck.title} />
-        <View style={styles.container}>
-            <View style={styles.content}>
+        <View style={Platform.OS === 'ios' ? styles.containerIos : styles.container}>
+            <View style={Platform.OS === 'ios' ? styles.contentIos : styles.content}>
               <Text style={styles.title}>{deck.title}</Text>
               <Text style={styles.cards}>{deck.questions.length} carta(s)</Text>
             </View>
@@ -43,9 +43,18 @@ const styles = StyleSheet.create({
         marginTop: 120,
         alignItems: 'center'
     },
+    containerIos: {
+        paddingTop: 20,
+        marginTop: 80,
+        alignItems: 'center'
+    },
     content: {
         flexDirection: 'column', 
         justifyContent: 'center', 
+        alignItems: 'center'
+    },
+    contentIos: {
+        flexDirection: 'column',         
         alignItems: 'center'
     },
     title: {
